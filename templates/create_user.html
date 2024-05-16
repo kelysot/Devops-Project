@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New User</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='create_user.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Create New User</h1>
+    </header>
+    <main>
+        <form action="{{ url_for('create_user') }}" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label><br>
+            <textarea id="email" name="email" rows="4" required></textarea><br>
+            <button type="submit">Create User</button>
+        </form>
+    </main>
+</body>
+</html>

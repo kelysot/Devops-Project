@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='user_details.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Hello, {{ user.name }}!</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('create_user') }}">Create User</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="users">
+            <article class="user">
+                <h2>{{ user.name }}</h2>
+                <p>{{ user.email }}</p>
+                <img src="{{ image_url }}" alt="S3 Image">
+            </article>
+        </section>
+    </main>
+</body>
+</html>

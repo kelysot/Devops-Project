@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5555:5555"
+    volumes:
+      - .:/app
+    networks:
+      - aws-project-network
+
+networks:
+  aws-project-network:
