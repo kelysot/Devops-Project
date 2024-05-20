@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import boto3
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
@@ -10,8 +11,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
-S3_IMAGE_KEY = os.environ.get('S3_IMAGE_KEY')
+load_dotenv()
+S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
+S3_IMAGE_KEY = os.getenv('S3_IMAGE_KEY')
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,7 +47,7 @@ def user_details(user_id):
                 "Content-Disposition": "inline; filename={}".format(image_object)
             }
         )
-        
+
         print(f"image_data: {image_data}")
     except Exception as e:
         print(f"Error fetching image from S3: {e}")
