@@ -39,6 +39,7 @@ def user_details(user_id):
     try:
         image_object = s3.get_object(Bucket=S3_BUCKET_NAME, Key=S3_IMAGE_KEY)
         image_data = image_object['Body'].read()
+        print(f"image_data: {image_data}")
     except Exception as e:
         print(f"Error fetching image from S3: {e}")
         image_data = None
