@@ -36,24 +36,15 @@ def create_user():
 @app.route("/user_details/<user_id>")
 def user_details(user_id):
     user = User.query.get(user_id)
-    url = "/image"  # Or wherever you want to generate the URL for the image
+    url = "/image" 
     return render_template("user_details.html", user=user, image_url=url)
-    # return render_template("user_details.html", user=user, image_data="/image")
 
 
 @app.route('/image')
 def image():
     s3 = boto3.client('s3')
-    # image_object = s3.get_object(Bucket=S3_BUCKET_NAME, Key=S3_IMAGE_KEY)
     url = s3.generate_presigned_url('get_object', Params={'Bucket': S3_BUCKET_NAME, 'Key': S3_IMAGE_KEY})
     return redirect(url)
-    # return Response(
-    #         image_object['Body'].read(),
-    #         mimetype='jpeg',
-    #         headers={
-    #             "Content-Disposition": "inline; filename={}".format(image_object)
-    #         }
-    #     )
 
 
 if __name__ == '__main__':
