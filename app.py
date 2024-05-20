@@ -36,24 +36,21 @@ def create_user():
 @app.route("/user_details/<user_id>")
 def user_details(user_id):
     user = User.query.get(user_id)
-    s3 = boto3.client('s3')
 
-    try:
-        image_object = s3.get_object(Bucket=S3_BUCKET_NAME, Key=S3_IMAGE_KEY)
-        image_data = Response(
+    return render_template("user_details.html", user=user, image_data="/image")
+
+
+@app.route('/image')
+def image():
+    s3 = boto3.client('s3')
+    image_object = s3.get_object(Bucket=S3_BUCKET_NAME, Key=S3_IMAGE_KEY)
+    return Response(
             image_object['Body'].read(),
             mimetype='image/jpeg',
             headers={
                 "Content-Disposition": "inline; filename={}".format(image_object)
             }
         )
-
-        print(f"image_data: {image_data}")
-    except Exception as e:
-        print(f"Error fetching image from S3: {e}")
-        image_data = None
-
-    return render_template("user_details.html", user=user, image_data=image_data)
 
 
 if __name__ == '__main__':
