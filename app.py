@@ -43,7 +43,9 @@ def user_details(user_id):
 @app.route('/image')
 def image():
     s3 = boto3.client('s3')
-    image_object = s3.get_object(Bucket=S3_BUCKET_NAME, Key=S3_IMAGE_KEY)
+    bucket_name = 'kely-bucket-160524'
+    image_file = 'river.jpeg'
+    image_object = s3.get_object(Bucket=bucket_name, Key=image_file)
     return Response(
             image_object['Body'].read(),
             mimetype='image/jpeg',
