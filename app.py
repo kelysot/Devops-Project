@@ -1,6 +1,8 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session, abort
+from flask import Flask, render_template, redirect, url_for, request, flash, session, abort, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import boto3
+import os
 
 app = Flask(__name__)
 
@@ -8,6 +10,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME')
+S3_IMAGE_KEY = os.environ.get('S3_IMAGE_KEY')
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,10 +34,16 @@ def create_user():
 @app.route("/user_details/<user_id>")
 def user_details(user_id):
     user = User.query.get(user_id)
-    bucket_name = 'kely-bucket-160524'
-    image_key = 'river.jpeg'
-    image_url = f'https://{bucket_name}.s3.amazonaws.com/{image_key}'
-    return render_template("user_details.html", user=user, image_url=image_url)
+    s3 = boto3.client('s3')
+
+    try:
+        image_object = s3.get_object(Bucket=S3_BUCKET_NAME, Key=S3_IMAGE_KEY)
+        image_data = image_object['Body'].read()
+    except Exception as e:
+        print(f"Error fetching image from S3: {e}")
+        image_data = None
+
+    return render_template("user_details.html", user=user, image_data=image_data)
 
 
 if __name__ == '__main__':

@@ -19,7 +19,11 @@
             <article class="user">
                 <h2>{{ user.name }}</h2>
                 <p>{{ user.email }}</p>
-                <img src="{{ image_url }}" alt="S3 Image">
+                {% if image_data %}
+                    <img src="data:image/jpeg;base64,{{ image_data|b64encode }}">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}            
             </article>
         </section>
     </main>
