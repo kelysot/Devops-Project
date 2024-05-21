@@ -2,12 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background: url("https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp");
+    background-size: cover;
 }
 
 header {
-    background-color: #073b4c;
-    color: #d5bdaf;
+    background-color: #022b3a;
+    color: #fed9b7;
     padding: 1em;
     text-align: center;
 }
@@ -19,7 +20,8 @@ main {
 form {
     width: 30%;
     margin: 0 auto;
-    background-color: #fff;
+    margin-top: 5rem;
+    background-color: #f9f7f3;
     padding: 2em;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -32,9 +34,8 @@ form label {
     margin-bottom: 0.5em;
 }
 
-form input[type="text"],
-form textarea {
-    width: 100%;
+form input {
+    width: 80%;
     padding: 0.5em;
     margin-bottom: 1em;
     border: 1px solid #ccc;

@@ -2,12 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+    background: url("https://blog.depositphotos.com/wp-content/uploads/2017/07/Soothing-nature-backgrounds-2.jpg.webp");
+    background-size: cover;
 }
 
 header {
-    background-color: #073b4c;
-    color: #d5bdaf;
+    background-color: #022b3a;
+    color: #fed9b7;
     padding: 1em;
     text-align: center;
 }
@@ -15,7 +16,8 @@ header {
 nav ul {
     list-style-type: none;
     padding: 0;
-    margin-left: 20px;
+    margin: 0;
+    text-align: center;
 }
 
 nav ul li {
@@ -24,62 +26,68 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #d5bdaf;
+    color: #fed9b7;
     text-decoration: none;
+    font-weight: bold;
 }
 
 main {
-    padding: 1em;
+    padding: 20px;
 }
 
 .users {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .user {
-    background-color: #fff;
-    padding: 1em;
+    background-color: #f9f7f3;
+    padding: 20px;
+    margin: 20px 0;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.2);
 }
 
 .user h2 {
-    margin-top: 0;
+    margin: 0 0 10px 0;
 }
 
 .user p {
+    margin: 0 0 10px 0;
+    color: #666;
+}
+
+.user img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
     margin-bottom: 10px;
+    transition: transform 0.3s ease;
 }
 
-.user .button-container {
-    display: flex;
-    gap: 5px;
+.user img:hover {
+    transform: scale(1.05);
 }
 
-.user button {
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-.user button:hover {
-    background-color: #d32f2f;
-}
-
-.user button.edit {
-    background-color: #2196F3;
-}
-
-.user button.delete {
-    background-color: #f44336;
+.user {
+    animation: fadeIn 1s ease-in-out;
 }
