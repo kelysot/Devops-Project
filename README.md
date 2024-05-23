@@ -38,45 +38,45 @@ The application includes the following features:
   
 - **User data:**
 
-```
-#!/bin/bash
-
-
-# Update package lists and install git and Docker
-sudo yum update -y
-sudo yum install git -y
-sudo yum install docker -y 
-
-# Start and enable Docker service
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo yum update -y
-
-# Install and start docker-compose 
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-
-# Clone the project repository
-git clone https://github.com/kelysot/Devops-Project.git
-
-# Navigate to the project directory
-cd Devops-Project
-
-# Set up environment variables in .env file
-echo "S3_BUCKET_NAME=YOUR_BUCKET_NAME" >> .env
-echo "S3_IMAGE_KEY=YOUR_IMAGE_NAME" >> .env
-
-# Run the docker-compose file
-sudo docker-compose up --build
-
-```
+  ```
+  #!/bin/bash
+  
+  
+  # Update package lists and install git and Docker
+  sudo yum update -y
+  sudo yum install git -y
+  sudo yum install docker -y 
+  
+  # Start and enable Docker service
+  sudo systemctl start docker
+  sudo systemctl enable docker
+  sudo yum update -y
+  
+  # Install and start docker-compose 
+  sudo curl -L "https://github.com/docker/compose/releases/download/v2.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  
+  # Clone the project repository
+  git clone https://github.com/kelysot/Devops-Project.git
+  
+  # Navigate to the project directory
+  cd Devops-Project
+  
+  # Set up environment variables in .env file
+  echo "S3_BUCKET_NAME=YOUR_BUCKET_NAME" >> .env
+  echo "S3_IMAGE_KEY=YOUR_IMAGE_NAME" >> .env
+  
+  # Run the docker-compose file
+  sudo docker-compose up --build
+  ```
 Remember to swap **YOUR_BUCKET_NAME** and **YOUR_IMAGE_NAME** with your real bucket and image names!
 
 
 - Ensure the S3 bucket is private.
 ![block public access](/images/block-public-access.png)
-If you try using the url of the image you will receive this error:
+
+- If you try using the url of the image you will receive this error:
 ![access denied](/images/access-denied-s3.png)
   
 
