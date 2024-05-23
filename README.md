@@ -32,7 +32,7 @@ The application includes the following features:
 - **Operating System:** Amazon Linux 2
 - **Instance Type:** t2.micro
 - **IAM Role:**
-  Assign the `s3ReadOnlyAccess` permission to the instance role.
+  Assign the `S3ReadOnlyAccess` permission to the instance role
 ![ec2 role](/images/ec2-role.png)
 
   
@@ -58,10 +58,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 # Clone the project repository
-git clone https://github.com/kelysot/aws_project.git
+git clone https://github.com/kelysot/Devops-Project.git
 
 # Navigate to the project directory
-cd aws_project
+cd Devops-Project
 
 # Set up environment variables in .env file
 echo "S3_BUCKET_NAME=YOUR_BUCKET_NAME" >> .env
