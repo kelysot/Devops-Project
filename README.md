@@ -2,6 +2,7 @@
 ### Project Description
 
 This project demonstrates a Flask web application that captures user details (name and email) and stores them in a database. 
+<br/>
 The application includes the following features:
 
 1. Displays a personalized greeting to the user.
